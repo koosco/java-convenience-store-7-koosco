@@ -34,15 +34,14 @@ public class AdditionalMessageHandler {
     }
 
     private OrderRequest handleCanNotGetPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
-        int amount = dto.amount() - additionalMessage.amount();
         if (askWithoutPromotion(dto, additionalMessage)) {
-            return OrderRequest.createNoPromotionDto(dto.productName(), amount);
+            return OrderRequest.createNoPromotionDto(dto.productName(), dto.amount());
         }
-        return OrderRequest.createPromotionDto(dto.productName(), amount);
+        return OrderRequest.createPromotionDto(dto.productName(), dto.amount() - additionalMessage.amount());
     }
 
     private boolean askWithoutPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
-        return !inputView.askWithoutPromotion(dto.productName(), additionalMessage.amount());
+        return inputView.askWithoutPromotion(dto.productName(), additionalMessage.amount());
     }
 
     private boolean askForPromotion(OrderRequest dto) {

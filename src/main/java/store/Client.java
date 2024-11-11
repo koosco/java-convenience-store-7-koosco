@@ -49,11 +49,11 @@ public class Client {
 
     private Order createOrder(List<Stock> stocks) {
         List<OrderRequest> requestOrderDtos = inputView.askPurchaseProducts(stocks);
-        List<OrderRequest> orderRequests = handleAdditionalMessages(requestOrderDtos);
+        List<OrderRequest> orderRequests = handleAdditionalMessages(stocks, requestOrderDtos);
         return stockController.purchaseProducts(stocks, orderRequests);
     }
 
-    private List<OrderRequest> handleAdditionalMessages(List<OrderRequest> dtos) {
+    private List<OrderRequest> handleAdditionalMessages(List<Stock> stocks, List<OrderRequest> dtos) {
         return dtos.stream().map(this::handleAdditionalMessage).toList();
     }
 
