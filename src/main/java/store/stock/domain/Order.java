@@ -51,4 +51,8 @@ public class Order {
     public int getResultPrice() {
         return getTotalPrice() - getPromotionDiscountPrice() - getMembershipDiscount();
     }
+
+    public void applyMembershipDiscount(int price) {
+        membershipDiscountPrice += price;
+    }
 }
