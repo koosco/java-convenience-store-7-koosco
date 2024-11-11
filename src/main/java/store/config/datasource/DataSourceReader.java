@@ -20,6 +20,7 @@ public class DataSourceReader {
                 .map(line -> line.split(DataSourceConst.FILE_DELIMITER.get()))
                 .map(Promotion::new).toList();
         } catch (IOException e) {
+            System.out.println(ErrorMessage.FILE_NOT_FOUND.get());
             throw new CustomException(ErrorMessage.FILE_NOT_FOUND);
         }
     }
@@ -31,6 +32,7 @@ public class DataSourceReader {
                 .map(line -> line.split(DataSourceConst.FILE_DELIMITER.get()))
                 .map(Product::new).toList();
         } catch (IOException e) {
+            System.out.println(ErrorMessage.FILE_NOT_FOUND.get());
             throw new CustomException(ErrorMessage.FILE_NOT_FOUND);
         }
     }
