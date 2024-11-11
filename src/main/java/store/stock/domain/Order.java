@@ -42,4 +42,8 @@ public class Order {
     public int getMembershipDiscount() {
         return membershipDiscountPrice;
     }
+
+    public int getResultPrice() {
+        return getTotalPrice() - getPromotionDiscountPrice() - getMembershipDiscount();
+    }
 }
