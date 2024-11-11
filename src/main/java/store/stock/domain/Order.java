@@ -1,6 +1,7 @@
 package store.stock.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import store.stock.app.dto.FreeProductDto;
 import store.stock.app.dto.ProductDto;
@@ -16,11 +17,15 @@ public class Order {
     }
 
     public List<ProductDto> getProductDtos() {
-        return productDtos;
+        return productDtos.stream()
+            .sorted(Comparator.comparingInt(ProductDto::price))
+            .toList();
     }
 
     public List<FreeProductDto> getFreeProductDtos() {
-        return freeProductDtos;
+        return freeProductDtos.stream()
+            .sorted(Comparator.comparingInt(FreeProductDto::price))
+            .toList();
     }
 
     public int getMembershipDiscountPrice() {
