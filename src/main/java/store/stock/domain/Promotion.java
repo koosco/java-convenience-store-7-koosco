@@ -3,7 +3,7 @@ package store.stock.domain;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import store.stock.app.dto.AdditionalMessageDto;
+import store.stock.app.dto.AdditionalMessage;
 
 public class Promotion {
 
@@ -42,16 +42,16 @@ public class Promotion {
         return name;
     }
 
-    public AdditionalMessageDto apply(String name, int promotionStock, int promotionAmount, int normalAmount) {
+    public AdditionalMessage apply(String name, int promotionStock, int promotionAmount, int normalAmount) {
         int restAmount = promotionAmount % (buy + get);
         if (isPromotionStockLeft(promotionStock, promotionAmount) && satisfyPromotionCondition(restAmount)) {
-            return new AdditionalMessageDto(name, null, PromotionMessage.CAN_ADD_ADDITIONAL_PRODUCT);
+            return new AdditionalMessage(name, null, PromotionMessage.CAN_ADD_ADDITIONAL_PRODUCT);
         }
 
         if (restAmount == 0) {
-            return new AdditionalMessageDto(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
+            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
         }
-        return new AdditionalMessageDto(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION);
+        return new AdditionalMessage(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION);
     }
 
     private static boolean isPromotionStockLeft(int promotionStock, int promotionAmount) {

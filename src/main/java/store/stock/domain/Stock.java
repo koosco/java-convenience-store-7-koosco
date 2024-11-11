@@ -1,6 +1,6 @@
 package store.stock.domain;
 
-import store.stock.app.dto.AdditionalMessageDto;
+import store.stock.app.dto.AdditionalMessage;
 
 public class Stock {
 
@@ -53,9 +53,9 @@ public class Stock {
         return promotion.getName();
     }
 
-    public AdditionalMessageDto checkPromotion(int amount) {
+    public AdditionalMessage checkPromotion(int amount) {
         if (promotion == null || !promotion.isApplicable(promotionQuantity)) {
-            return new AdditionalMessageDto(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
+            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
         }
 
         int promotionProductAmount = Math.min(amount, promotionQuantity);

@@ -1,7 +1,7 @@
 package store.stock.app;
 
-import store.stock.app.dto.AdditionalMessageDto;
-import store.stock.app.dto.ProductOrderRequestDto;
+import store.stock.app.dto.AdditionalMessage;
+import store.stock.app.dto.OrderRequest;
 import store.stock.domain.Stock;
 
 public class StockCommandService {
@@ -12,7 +12,7 @@ public class StockCommandService {
         this.queryService = queryService;
     }
 
-    public AdditionalMessageDto checkPromotion(ProductOrderRequestDto dto) {
+    public AdditionalMessage checkPromotion(OrderRequest dto) {
         Stock stock = queryService.findStock(dto.productName());
         return stock.checkPromotion(dto.amount());
     }

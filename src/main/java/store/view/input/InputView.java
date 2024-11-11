@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import store.common.exception.CustomException;
 import store.common.exception.ErrorMessage;
-import store.stock.app.dto.ProductOrderRequestDto;
+import store.stock.app.dto.OrderRequest;
 import store.stock.domain.Stock;
 
 public class InputView {
@@ -22,7 +22,7 @@ public class InputView {
         this.continueInputView = continueInputView;
     }
 
-    public List<ProductOrderRequestDto> askPurchaseProducts(List<Stock> stocks) {
+    public List<OrderRequest> askPurchaseProducts(List<Stock> stocks) {
         return inputWithRetry(() -> productInputView.purchaseProducts(stocks));
     }
 
