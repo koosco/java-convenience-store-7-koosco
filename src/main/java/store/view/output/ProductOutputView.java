@@ -10,7 +10,7 @@ public class ProductOutputView {
     }
 
     public void printProducts(List<Stock> stocks) {
-        System.out.println("현재 보유하고 있는 상품입니다");
+        System.out.println("현재 보유하고 있는 상품입니다\n");
 
         stocks.forEach(stock -> {
             printIfPromotionExists(stock);
