@@ -85,8 +85,8 @@ public class Stock {
             promotionQuantity -= amount;
             return;
         }
-        promotionQuantity = 0;
         noPromotionQuantity -= amount - promotionQuantity;
+        promotionQuantity = 0;
     }
 
     public Optional<Product> getPromotionProduct() {
