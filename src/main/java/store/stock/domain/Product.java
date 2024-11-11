@@ -1,6 +1,10 @@
 package store.stock.domain;
 
+import java.util.List;
+
 public class Product {
+
+    private final static String TO_STRING_DELIMITER = ",";
 
     private final String name;
     private final int price;
@@ -36,5 +40,14 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return String.join(TO_STRING_DELIMITER, List.of(
+            name,
+            String.valueOf(price),
+            String.valueOf(quantity),
+            getPromotion()));
     }
 }
