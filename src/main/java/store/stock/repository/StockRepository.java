@@ -20,4 +20,8 @@ public class StockRepository {
     public Optional<Stock> findByName(String name) {
         return dataSource.findStockByName(name);
     }
+
+    public void save(List<Stock> stocks) {
+        dataSource.saveStocks(stocks);
+    }
 }

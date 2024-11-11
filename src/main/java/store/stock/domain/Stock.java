@@ -1,5 +1,6 @@
 package store.stock.domain;
 
+import java.util.Optional;
 import store.stock.app.dto.AdditionalMessage;
 import store.stock.app.dto.FreeProductDto;
 import store.stock.app.dto.ProductDto;
@@ -74,7 +75,8 @@ public class Stock {
         }
 
         order.addProduct(new ProductDto(name, amount, price, true));
-        order.addFreeProduct(new FreeProductDto(name, promotion.getPromotion(Math.min(amount, promotionQuantity)), price));
+        order.addFreeProduct(
+            new FreeProductDto(name, promotion.getPromotion(Math.min(amount, promotionQuantity)), price));
         sell(amount);
     }
 
@@ -85,5 +87,19 @@ public class Stock {
         }
         promotionQuantity = 0;
         noPromotionQuantity -= amount - promotionQuantity;
+    }
+
+    public Optional<Product> getPromotionProduct() {
+        if (promotion != null) {
+            return Optional.of(new Product(name, price, promotionQuantity, getPromotionName()));
+        }
+        return Optional.empty();
+    }
+
+    public Optional<Product> getNormalProduct() {
+        if (noPromotionQuantity > 0) {
+            return Optional.of(new Product(name, price, noPromotionQuantity, null));
+        }
+        return Optional.empty();
     }
 }

@@ -5,13 +5,16 @@ import store.stock.app.dto.AdditionalMessage;
 import store.stock.app.dto.OrderRequest;
 import store.stock.domain.Order;
 import store.stock.domain.Stock;
+import store.stock.repository.StockRepository;
 
 public class StockCommandService {
 
     private final StockQueryService queryService;
+    private final StockRepository stockRepository;
 
-    public StockCommandService(StockQueryService queryService) {
+    public StockCommandService(StockQueryService queryService, StockRepository stockRepository) {
         this.queryService = queryService;
+        this.stockRepository = stockRepository;
     }
 
     public AdditionalMessage checkPromotion(OrderRequest dto) {
@@ -32,5 +35,10 @@ public class StockCommandService {
         Stock findStock = stocks.stream().filter(stock -> stock.getName().equals(dto.productName())).findFirst()
             .orElseThrow();
         findStock.purchase(order, dto.amount(), dto.applyPromotion());
+        save(stocks);
+    }
+
+    public void save(List<Stock> stocks) {
+        stockRepository.save(stocks);
     }
 }

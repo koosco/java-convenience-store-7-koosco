@@ -10,10 +10,12 @@ import store.stock.domain.Stock;
 public class DataSource {
 
     private final DataSourceReader dataSourceReader;
+    private final DataSourceWriter dataSourceWriter;
     private List<Stock> stocks = new ArrayList<>();
 
-    public DataSource(DataSourceReader dataSourceReader) {
+    public DataSource(DataSourceReader dataSourceReader, DataSourceWriter dataSourceWriter) {
         this.dataSourceReader = dataSourceReader;
+        this.dataSourceWriter = dataSourceWriter;
         initStock();
     }
 
@@ -57,5 +59,10 @@ public class DataSource {
     public Optional<Stock> findStockByName(String name) {
         return stocks.stream()
             .filter(stock -> stock.getName().equals(name)).findFirst();
+    }
+
+    public void saveStocks(List<Stock> stocks) {
+        dataSourceWriter.save(stocks);
+        initStock();
     }
 }
