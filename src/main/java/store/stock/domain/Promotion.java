@@ -43,6 +43,7 @@ public class Promotion {
     }
 
     public AdditionalMessage apply(String name, int promotionStock, int promotionAmount, int normalAmount) {
+        int promotionCount = promotionAmount / (buy + get);
         int restAmount = promotionAmount % (buy + get);
         if (isPromotionStockLeft(promotionStock, promotionAmount) && satisfyPromotionCondition(restAmount)) {
             return new AdditionalMessage(name, null, PromotionMessage.CAN_ADD_ADDITIONAL_PRODUCT, true);
@@ -50,6 +51,9 @@ public class Promotion {
 
         if (restAmount == 0) {
             return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE, true);
+        }
+        if (promotionCount != 0) {
+            return new AdditionalMessage(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION, true);
         }
         return new AdditionalMessage(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION, false);
     }

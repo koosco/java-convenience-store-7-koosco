@@ -35,6 +35,9 @@ public class AdditionalMessageHandler {
 
     private OrderRequest handleCanNotGetPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
         if (askWithoutPromotion(dto, additionalMessage)) {
+            if (additionalMessage.applyPromotion()) {
+                return OrderRequest.createPromotionDto(dto.productName(), dto.amount());
+            }
             return OrderRequest.createNoPromotionDto(dto.productName(), dto.amount());
         }
         return OrderRequest.createPromotionDto(dto.productName(), dto.amount() - additionalMessage.amount());
