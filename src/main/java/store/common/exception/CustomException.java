@@ -1,6 +1,6 @@
 package store.common.exception;
 
-public class CustomException extends RuntimeException {
+public class CustomException extends IllegalArgumentException {
 
     private final ErrorMessage errorMessage;
 
