@@ -22,4 +22,8 @@ public class Order {
     public List<FreeProductDto> getFreeProductDtos() {
         return freeProductDtos;
     }
+
+    public int getMembershipDiscountPrice() {
+        return membershipDiscountPrice;
+    }
 }
