@@ -27,7 +27,7 @@ public class DataSource {
         List<Promotion> promotions = dataSourceReader.loadPromotions();
         List<Product> products = dataSourceReader.loadProducts();
 
-        stocks = new ArrayList<>();
+        this.stocks = new ArrayList<>();
         for (Product product : products) {
             Promotion promotion = findPromotion(promotions, product.getPromotion());
             addToStock(product, promotion);
@@ -57,6 +57,7 @@ public class DataSource {
     }
 
     public Optional<Stock> findStockByName(String name) {
+        initStock();
         return stocks.stream()
             .filter(stock -> stock.getName().equals(name)).findFirst();
     }

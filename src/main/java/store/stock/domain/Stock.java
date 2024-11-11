@@ -102,4 +102,8 @@ public class Stock {
         }
         return Optional.empty();
     }
+
+    public Product getProduct() {
+        return new Product(name, price, 0, null);
+    }
 }

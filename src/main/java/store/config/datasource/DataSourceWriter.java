@@ -46,6 +46,10 @@ public class DataSourceWriter {
             return;
         }
 
+        if (promotionProduct.isEmpty() && stock.getNormalProduct().isEmpty()) {
+            strings.add(stock.getProduct().toString());
+            return;
+        }
         stock.getPromotionProduct().ifPresent(product -> strings.add(product.toString()));
         stock.getNormalProduct().ifPresent(product -> strings.add(product.toString()));
     }
