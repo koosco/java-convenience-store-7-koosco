@@ -1,8 +1,8 @@
 package store.config.membership;
 
-import store.stock.app.MembershipService;
-import store.stock.domain.membership.FixedMembership;
-import store.stock.domain.membership.Membership;
+import store.membership.app.MembershipService;
+import store.membership.domain.FixedMembership;
+import store.membership.domain.Membership;
 
 public class MembershipConfig {
 

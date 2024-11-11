@@ -1,4 +1,4 @@
-package store.stock.domain.membership;
+package store.membership.domain;
 
 public interface Membership {
 

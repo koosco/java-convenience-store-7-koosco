@@ -1,7 +1,7 @@
-package store.stock.app;
+package store.membership.app;
 
 import store.stock.domain.Order;
-import store.stock.domain.membership.Membership;
+import store.membership.domain.Membership;
 
 public class MembershipService {
 
