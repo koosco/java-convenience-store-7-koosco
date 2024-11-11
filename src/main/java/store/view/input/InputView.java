@@ -10,13 +10,19 @@ import store.stock.domain.Stock;
 public class InputView {
 
     private final ProductInputView productInputView;
+    private final MembershipInputView membershipInputView;
 
-    public InputView(ProductInputView productInputView) {
+    public InputView(ProductInputView productInputView, MembershipInputView membershipInputView) {
         this.productInputView = productInputView;
+        this.membershipInputView = membershipInputView;
     }
 
     public List<ProductOrderRequestDto> askPurchaseProducts(List<Stock> stocks) {
         return inputWithRetry(() -> productInputView.purchaseProducts(stocks));
+    }
+
+    public boolean askForMembership() {
+        return inputWithRetry(membershipInputView::askMembership);
     }
 
     private <T> T inputWithRetry(Supplier<T> supplier) {
