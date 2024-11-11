@@ -32,6 +32,10 @@ public class InputView {
         return inputWithRetry(() -> promotionInputView.askWithoutPromotion(productName, amount));
     }
 
+    public boolean askForPromotion(String productName) {
+        return inputWithRetry(() -> promotionInputView.askForPromotion(productName));
+    }
+
     private <T> T inputWithRetry(Supplier<T> supplier) {
         while (true) {
             try {
