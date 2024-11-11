@@ -43,6 +43,7 @@ public class DataSourceWriter {
         if (promotionProduct.isPresent() && stock.getNormalProduct().isEmpty()) {
             // promotion 재고가 존재하고 일반 재고가 없는 경우
             strings.add(promotionProduct.get().toString());
+            stock.getNormalProduct().ifPresent(product -> strings.add(product.toString()));
             return;
         }
 
