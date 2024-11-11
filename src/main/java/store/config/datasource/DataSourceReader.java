@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import store.common.exception.CustomException;
+import store.common.exception.ErrorMessage;
 import store.stock.domain.Product;
 import store.stock.domain.Promotion;
 
@@ -18,7 +20,7 @@ public class DataSourceReader {
                 .map(line -> line.split(DataSourceConst.FILE_DELIMITER.get()))
                 .map(Promotion::new).toList();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomException(ErrorMessage.FILE_NOT_FOUND);
         }
     }
 
@@ -29,7 +31,7 @@ public class DataSourceReader {
                 .map(line -> line.split(DataSourceConst.FILE_DELIMITER.get()))
                 .map(Product::new).toList();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CustomException(ErrorMessage.FILE_NOT_FOUND);
         }
     }
 
