@@ -3,6 +3,7 @@ package store.stock.domain;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import store.stock.app.dto.AdditionalMessage;
 
 public class Promotion {
@@ -34,7 +35,7 @@ public class Promotion {
     public boolean isApplicable(int promotionQuantity) {
         LocalDateTime now = DateTimes.now();
         return !now.isBefore(startDate.atStartOfDay())
-            && !now.isAfter(endDate.plusDays(END_DATE_INCLUSIVE).atStartOfDay())
+            && !now.isAfter(endDate.atTime(LocalTime.MAX))
             && promotionQuantity >= buy + get;
     }
 
