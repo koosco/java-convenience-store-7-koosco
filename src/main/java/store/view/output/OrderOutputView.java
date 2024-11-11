@@ -28,7 +28,7 @@ public class OrderOutputView {
         System.out.println("==============================");
         System.out.printf("%-14s%-6d%,8d\n", "총구매액", order.getTotalAmount(), order.getTotalPrice());
         System.out.printf("%-20s %7s\n", "행사할인", "-" + String.format("%,d", order.getPromotionDiscountPrice()));
-        System.out.printf("%-20s %6s\n", "멤버십할인", "-" + String.format("%,d", order.getMembershipDiscount()));
+        System.out.printf("%-20s %6s\n", "멤버십할인", "-" + String.format("%,d", order.getMembershipDiscountPrice()));
         System.out.printf("%-20s %7s\n", "내실돈", String.format("%,d", order.getResultPrice()));
     }
 }

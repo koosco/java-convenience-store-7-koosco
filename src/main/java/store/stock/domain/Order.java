@@ -28,10 +28,6 @@ public class Order {
             .toList();
     }
 
-    public int getMembershipDiscountPrice() {
-        return membershipDiscountPrice;
-    }
-
     public int getTotalAmount() {
         return productDtos.stream().map(ProductDto::amount).mapToInt(Integer::intValue).sum();
     }
@@ -44,12 +40,12 @@ public class Order {
         return freeProductDtos.stream().map(dto -> dto.price() * dto.amount()).mapToInt(Integer::intValue).sum();
     }
 
-    public int getMembershipDiscount() {
+    public int getMembershipDiscountPrice() {
         return membershipDiscountPrice;
     }
 
     public int getResultPrice() {
-        return getTotalPrice() - getPromotionDiscountPrice() - getMembershipDiscount();
+        return getTotalPrice() - getPromotionDiscountPrice() - getMembershipDiscountPrice();
     }
 
     public void applyMembershipDiscount(int price) {
