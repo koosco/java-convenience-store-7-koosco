@@ -17,4 +17,12 @@ public class Product {
     public Product(String[] parts) {
         this(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), parts[3]);
     }
+
+    public boolean hasPromotion() {
+        return !promotion.equals("null");
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

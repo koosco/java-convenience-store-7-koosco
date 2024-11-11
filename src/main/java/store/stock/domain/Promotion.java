@@ -25,4 +25,8 @@ public class Promotion {
             LocalDate.parse(parts[3]),
             LocalDate.parse(parts[4]));
     }
+
+    public String getName() {
+        return name;
+    }
 }
