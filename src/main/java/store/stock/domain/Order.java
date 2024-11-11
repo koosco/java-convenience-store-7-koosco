@@ -26,4 +26,8 @@ public class Order {
     public int getMembershipDiscountPrice() {
         return membershipDiscountPrice;
     }
+
+    public int getMembershipDiscount() {
+        return membershipDiscountPrice;
+    }
 }
