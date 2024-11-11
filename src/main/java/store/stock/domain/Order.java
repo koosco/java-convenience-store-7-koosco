@@ -18,4 +18,8 @@ public class Order {
     public List<ProductDto> getProductDtos() {
         return productDtos;
     }
+
+    public List<FreeProductDto> getFreeProductDtos() {
+        return freeProductDtos;
+    }
 }
