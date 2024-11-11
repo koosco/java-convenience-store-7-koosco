@@ -12,12 +12,14 @@ public class InputView {
     private final ProductInputView productInputView;
     private final MembershipInputView membershipInputView;
     private final PromotionInputView promotionInputView;
+    private final ContinueInputView continueInputView;
 
     public InputView(ProductInputView productInputView, MembershipInputView membershipInputView,
-        PromotionInputView promotionInputView) {
+        PromotionInputView promotionInputView, ContinueInputView continueInputView) {
         this.productInputView = productInputView;
         this.membershipInputView = membershipInputView;
         this.promotionInputView = promotionInputView;
+        this.continueInputView = continueInputView;
     }
 
     public List<ProductOrderRequestDto> askPurchaseProducts(List<Stock> stocks) {
@@ -34,6 +36,10 @@ public class InputView {
 
     public boolean askForPromotion(String productName) {
         return inputWithRetry(() -> promotionInputView.askForPromotion(productName));
+    }
+
+    public boolean askContinue() {
+        return inputWithRetry(continueInputView::askContinue);
     }
 
     private <T> T inputWithRetry(Supplier<T> supplier) {
