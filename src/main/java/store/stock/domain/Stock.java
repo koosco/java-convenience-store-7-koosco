@@ -35,6 +35,10 @@ public class Stock {
         return promotionQuantity;
     }
 
+    public int getQuantity() {
+        return noPromotionQuantity + promotionQuantity;
+    }
+
     public boolean hasPromotion() {
         return promotion != null;
     }
