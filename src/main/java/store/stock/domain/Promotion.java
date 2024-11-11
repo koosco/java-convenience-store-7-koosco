@@ -64,4 +64,8 @@ public class Promotion {
         // 구매 개수가 프로모션 조건을 만족하는 경우
         return restAmount == buy;
     }
+
+    public int getPromotion(int amount) {
+        return amount / (buy + get);
+    }
 }

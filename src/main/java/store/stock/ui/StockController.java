@@ -5,6 +5,7 @@ import store.stock.app.StockCommandService;
 import store.stock.app.StockQueryService;
 import store.stock.app.dto.AdditionalMessage;
 import store.stock.app.dto.OrderRequest;
+import store.stock.domain.Order;
 import store.stock.domain.Stock;
 
 public class StockController {
@@ -23,5 +24,9 @@ public class StockController {
 
     public AdditionalMessage checkPromotion(OrderRequest dto) {
         return commandService.checkPromotion(dto);
+    }
+
+    public Order purchaseProducts(List<Stock> stocks, List<OrderRequest> orderRequests) {
+        return commandService.purchaseAll(stocks, orderRequests);
     }
 }

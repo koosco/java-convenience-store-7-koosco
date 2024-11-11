@@ -1,6 +1,8 @@
 package store.stock.domain;
 
 import store.stock.app.dto.AdditionalMessage;
+import store.stock.app.dto.FreeProductDto;
+import store.stock.app.dto.ProductDto;
 
 public class Stock {
 
@@ -62,5 +64,26 @@ public class Stock {
         int normalProductAmount = amount - promotionProductAmount;
 
         return promotion.apply(name, promotionQuantity, promotionProductAmount, normalProductAmount);
+    }
+
+    public void purchase(Order order, int amount, boolean applyPromotion) {
+        if (promotion == null || !promotion.isApplicable(promotionQuantity) || !applyPromotion) {
+            order.addProduct(new ProductDto(name, amount, price, false));
+            sell(amount);
+            return;
+        }
+
+        order.addProduct(new ProductDto(name, amount, price, true));
+        order.addFreeProduct(new FreeProductDto(name, promotion.getPromotion(Math.min(amount, promotionQuantity)), price));
+        sell(amount);
+    }
+
+    private void sell(int amount) {
+        if (promotionQuantity >= amount) {
+            promotionQuantity -= amount;
+            return;
+        }
+        promotionQuantity = 0;
+        noPromotionQuantity -= amount - promotionQuantity;
     }
 }

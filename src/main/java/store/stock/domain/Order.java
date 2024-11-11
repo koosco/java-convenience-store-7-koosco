@@ -55,4 +55,12 @@ public class Order {
     public void applyMembershipDiscount(int price) {
         membershipDiscountPrice += price;
     }
+
+    public void addProduct(ProductDto dto) {
+        productDtos.add(dto);
+    }
+
+    public void addFreeProduct(FreeProductDto dto) {
+        freeProductDtos.add(dto);
+    }
 }
