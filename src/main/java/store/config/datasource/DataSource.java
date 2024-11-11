@@ -33,7 +33,7 @@ public class DataSource {
     }
 
     private void addToStock(Product product, Promotion promotion) {
-        findStock(product).ifPresentOrElse(
+        findStockByProduct(product).ifPresentOrElse(
             stock -> stock.addProduct(product, promotion),
             () -> {
                 Stock stock = new Stock(product.getName(), product.getPrice());
@@ -49,8 +49,13 @@ public class DataSource {
             .findFirst().orElse(null);
     }
 
-    private Optional<Stock> findStock(Product product) {
+    private Optional<Stock> findStockByProduct(Product product) {
         return stocks.stream()
             .filter(stock -> stock.getName().equals(product.getName())).findFirst();
+    }
+
+    public Optional<Stock> findStockByName(String name) {
+        return stocks.stream()
+            .filter(stock -> stock.getName().equals(name)).findFirst();
     }
 }

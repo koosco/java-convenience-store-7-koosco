@@ -3,6 +3,8 @@ package store.stock.ui;
 import java.util.List;
 import store.stock.app.StockCommandService;
 import store.stock.app.StockQueryService;
+import store.stock.app.dto.AdditionalMessageDto;
+import store.stock.app.dto.ProductOrderRequestDto;
 import store.stock.domain.Stock;
 
 public class StockController {
@@ -17,5 +19,9 @@ public class StockController {
 
     public List<Stock> findAllStocks() {
         return queryService.findAllStocks();
+    }
+
+    public AdditionalMessageDto checkPromotion(ProductOrderRequestDto dto) {
+        return commandService.checkPromotion(dto);
     }
 }

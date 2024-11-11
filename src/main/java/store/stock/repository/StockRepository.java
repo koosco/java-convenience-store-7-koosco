@@ -1,6 +1,7 @@
 package store.stock.repository;
 
 import java.util.List;
+import java.util.Optional;
 import store.config.datasource.DataSource;
 import store.stock.domain.Stock;
 
@@ -14,5 +15,9 @@ public class StockRepository {
 
     public List<Stock> findAll() {
         return dataSource.findAllStocks();
+    }
+
+    public Optional<Stock> findByName(String name) {
+        return dataSource.findStockByName(name);
     }
 }
