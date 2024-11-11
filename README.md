@@ -62,7 +62,7 @@
 
 #### 재고 관리
 - 상품 데이터는 products.md에 관리한다
-  - [ ] products.md에서 products 데이터를 읽어온다
+  - [x] products.md에서 products 데이터를 읽어온다
 - 프로모션 데이터는 promotions.md에 관리한다
   - [x] promotions.md에서 promotions 데이터를 읽어온다
 - [ ] 상품을 구매한 후에는 재고가 감소해야 한다
