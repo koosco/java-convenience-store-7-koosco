@@ -45,13 +45,13 @@ public class Promotion {
     public AdditionalMessage apply(String name, int promotionStock, int promotionAmount, int normalAmount) {
         int restAmount = promotionAmount % (buy + get);
         if (isPromotionStockLeft(promotionStock, promotionAmount) && satisfyPromotionCondition(restAmount)) {
-            return new AdditionalMessage(name, null, PromotionMessage.CAN_ADD_ADDITIONAL_PRODUCT);
+            return new AdditionalMessage(name, null, PromotionMessage.CAN_ADD_ADDITIONAL_PRODUCT, true);
         }
 
         if (restAmount == 0) {
-            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
+            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE, true);
         }
-        return new AdditionalMessage(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION);
+        return new AdditionalMessage(name, restAmount + normalAmount, PromotionMessage.CAN_NOT_GET_PROMOTION, false);
     }
 
     private static boolean isPromotionStockLeft(int promotionStock, int promotionAmount) {

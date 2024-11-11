@@ -58,7 +58,7 @@ public class Stock {
 
     public AdditionalMessage checkPromotion(int amount) {
         if (promotion == null || !promotion.isApplicable(promotionQuantity)) {
-            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE);
+            return new AdditionalMessage(name, null, PromotionMessage.NO_ADDITIONAL_MESSAGE, false);
         }
 
         int promotionProductAmount = Math.min(amount, promotionQuantity);

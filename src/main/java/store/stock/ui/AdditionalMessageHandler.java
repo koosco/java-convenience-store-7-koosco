@@ -22,15 +22,7 @@ public class AdditionalMessageHandler {
         if (additionalMessage.message().equals(CAN_NOT_GET_PROMOTION)) {
             return handleCanNotGetPromotion(dto, additionalMessage);
         }
-        return dto;
-    }
-
-    private OrderRequest handleCanNotGetPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
-        int amount = dto.amount() - additionalMessage.amount();
-        if (askWithoutPromotion(dto, additionalMessage)) {
-            return OrderRequest.createNoPromotionDto(dto.productName(), amount);
-        }
-        return OrderRequest.createPromotionDto(dto.productName(), amount);
+        return new OrderRequest(dto.productName(), dto.amount(), additionalMessage.applyPromotion());
     }
 
     private OrderRequest handleAdditionalProduct(OrderRequest dto) {
@@ -39,6 +31,14 @@ public class AdditionalMessageHandler {
             return OrderRequest.createPromotionDto(dto.productName(), amount + 1);
         }
         return OrderRequest.createNoPromotionDto(dto.productName(), amount);
+    }
+
+    private OrderRequest handleCanNotGetPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
+        int amount = dto.amount() - additionalMessage.amount();
+        if (askWithoutPromotion(dto, additionalMessage)) {
+            return OrderRequest.createNoPromotionDto(dto.productName(), amount);
+        }
+        return OrderRequest.createPromotionDto(dto.productName(), amount);
     }
 
     private boolean askWithoutPromotion(OrderRequest dto, AdditionalMessage additionalMessage) {
