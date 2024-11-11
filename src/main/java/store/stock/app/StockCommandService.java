@@ -1,6 +1,8 @@
 package store.stock.app;
 
 import java.util.List;
+import store.common.exception.CustomException;
+import store.common.exception.ErrorMessage;
 import store.stock.app.dto.AdditionalMessage;
 import store.stock.app.dto.OrderRequest;
 import store.stock.domain.Order;
@@ -32,8 +34,9 @@ public class StockCommandService {
     }
 
     private void purchase(List<Stock> stocks, Order order, OrderRequest dto) {
-        Stock findStock = stocks.stream().filter(stock -> stock.getName().equals(dto.productName())).findFirst()
-            .orElseThrow();
+        Stock findStock = stocks.stream()
+            .filter(stock -> stock.getName().equals(dto.productName()))
+            .findFirst().orElseThrow(() -> new CustomException(ErrorMessage.NOT_FOUND_PRODUCT));
         findStock.purchase(order, dto.amount(), dto.applyPromotion());
         save(stocks);
     }
