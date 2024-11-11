@@ -31,7 +31,10 @@ public class Product {
     }
 
     public String getPromotion() {
-        return promotion;
+        if (promotion != null) {
+            return promotion;
+        }
+        return "null";
     }
 
     public String getName() {
