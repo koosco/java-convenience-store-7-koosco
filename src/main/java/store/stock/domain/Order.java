@@ -33,7 +33,7 @@ public class Order {
     }
 
     public int getTotalPrice() {
-        return productDtos.stream().map(ProductDto::price).mapToInt(Integer::intValue).sum();
+        return productDtos.stream().map(dto -> dto.price() * dto.amount()).mapToInt(Integer::intValue).sum();
     }
 
     public int getPromotionDiscountPrice() {
